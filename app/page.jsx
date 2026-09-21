@@ -1,16 +1,8 @@
 import Stage from '@/components/Stage';
 import Screenshot from '@/components/Screenshot';
-
-const NAV = [
-  { href: '#meeting', label: 'Meeting Room' },
-  { href: '#snapshot', label: 'Snapshot' },
-  { href: '#pin', label: 'PIN Issue' },
-  { href: '#inspection', label: 'Inspection' },
-  { href: '#iot', label: 'IoT' },
-  { href: '#manual', label: 'Digital Manual' },
-];
-
-const MONO = { fontFamily: 'ui-monospace,Menlo,monospace' };
+import SiteHeader from '@/components/SiteHeader';
+import SiteFooter from '@/components/SiteFooter';
+import { MONO } from '@/lib/ui';
 
 // The six feature sections are laid out identically — only the copy differs.
 const SECTION = {
@@ -63,16 +55,7 @@ export default function Home() {
 
       <Stage />
 
-      <header style={{ position: 'relative', zIndex: 6, display: 'flex', alignItems: 'center', gap: 'clamp(16px,2vw,40px)', padding: '18px clamp(20px,5vw,80px)', borderBottom: '1px solid rgba(255,255,255,.1)', backdropFilter: 'blur(6px)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginRight: 'auto' }}>
-          <img src="/img/rmi-logo.png" alt="RMI" style={{ height: 28, width: 'auto', display: 'block', filter: 'brightness(0) invert(1)' }} />
-          <span style={{ fontWeight: 700, fontSize: 12, letterSpacing: '.16em', textTransform: 'uppercase', color: 'rgba(255,255,255,.6)', paddingLeft: 12, borderLeft: '1px solid rgba(255,255,255,.18)' }}>Global 3D</span>
-        </div>
-        <nav className="rmi-nav" style={{ display: 'flex', alignItems: 'center', gap: 'clamp(18px,2vw,30px)', fontSize: 14, fontWeight: 500 }}>
-          {NAV.map((n) => <a key={n.href} className="rmi-link" href={n.href}>{n.label}</a>)}
-        </nav>
-        <a className="rmi-btn" href="#cta" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: '#ffffff', fontWeight: 700, fontSize: 14, padding: '11px 20px', borderRadius: 999, textDecoration: 'none', whiteSpace: 'nowrap' }}>Book a demo</a>
-      </header>
+      <SiteHeader fromHome />
 
       <div id="rmi-track" style={{ position: 'relative', zIndex: 3 }}>
 
@@ -281,18 +264,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer style={{ position: 'relative', zIndex: 4, background: '#0c0b0b', padding: 'clamp(28px,3vw,44px) clamp(20px,5vw,80px)', borderTop: '1px solid rgba(255,255,255,.1)' }}>
-        <div style={{ maxWidth: 1180, margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '18px 32px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <img src="/img/rmi-logo.png" alt="RMI" style={{ height: 24, width: 'auto', display: 'block', filter: 'brightness(0) invert(1)' }} />
-            <span style={{ fontSize: 12, color: 'rgba(255,255,255,.45)' }}>© 2026 RMI Global 3D</span>
-          </div>
-          <nav style={{ display: 'flex', flexWrap: 'wrap', gap: 20, fontSize: 13 }}>
-            {NAV.map((n) => <a key={n.href} className="rmi-footlink" href={n.href}>{n.label}</a>)}
-          </nav>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,.45)' }}>Powered by ALINK<span style={{ color: '#ec3013' }}>3D</span>®</div>
-        </div>
-      </footer>
+      <SiteFooter fromHome />
 
     </div>
   );

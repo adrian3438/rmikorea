@@ -11,7 +11,22 @@ a:hover { color: #ff6a52; }
 
 #rmi-canvas { cursor: grab; }
 
-@media (max-width: 1023px) { .rmi-nav { display: none !important } }
+/* The nav gained a seventh item (the converter route), so it needs more room
+   before it is worth showing. Below this the footer carries the same links. */
+@media (max-width: 1279px) { .rmi-nav { display: none !important } }
+
+/* Tool routes read as a product, not another section of the page. */
+.rmi-tool { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.rmi-tool-badge {
+  background: #ec3013;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+.rmi-tool[aria-current="page"] { color: #ffffff; }
 
 /* Hover states. The old markup carried these as data-hover="prop:value" strings that a
    script read back and wrote onto element.style; as CSS they cost no JS and no listeners.

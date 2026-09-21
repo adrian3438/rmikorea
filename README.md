@@ -78,5 +78,11 @@ no third-party requests at runtime.
 
 ## Known gaps
 
-- **No favicon.** Browsers request `/favicon.ico` and get a 404 — same as the original
-  version. Dropping a `favicon.ico` into `app/` fixes it.
+- **The AI DWG Converter does not convert yet.** `/dwg-converter` is a finished screen
+  — upload, validation and every state work — but `lib/dwg-converter.js` has no engine
+  behind it, so it stops at "no conversion engine is connected" rather than handing
+  over a file that is not a real DWG. Set `NEXT_PUBLIC_DWG_ENDPOINT` and implement the
+  request in that one file to finish it.
+- **No mobile nav.** The header nav is hidden below 1280px and there is no menu button;
+  the footer repeats every link so nothing is unreachable, but a narrow-screen menu is
+  still missing.
