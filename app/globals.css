@@ -1,0 +1,36 @@
+/* RMI Global 3D — site styles. Inline styles on the JSX carry the layout; this file
+   holds what inline styles cannot express: resets, keyframes, hover states, media queries. */
+
+body { margin: 0; background: #0c0b0b; }
+a { color: #ec3013; }
+a:hover { color: #ff6a52; }
+
+@keyframes rmiFloat { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
+@keyframes rmiBlink { 0%, 100% { opacity: 1 } 50% { opacity: .25 } }
+@keyframes rmiScan { 0% { transform: translateY(-100%) } 100% { transform: translateY(900%) } }
+
+#rmi-canvas { cursor: grab; }
+
+@media (max-width: 1023px) { .rmi-nav { display: none !important } }
+
+/* Hover states. The old markup carried these as data-hover="prop:value" strings that a
+   script read back and wrote onto element.style; as CSS they cost no JS and no listeners.
+   The background/color these override must stay OUT of the inline style — an inline
+   declaration outranks any class, hover or not. */
+.rmi-link { color: rgba(255, 255, 255, .72); text-decoration: none; }
+.rmi-link:hover { color: #ffffff; }
+
+.rmi-footlink { color: rgba(255, 255, 255, .55); text-decoration: none; }
+.rmi-footlink:hover { color: #ffffff; }
+
+.rmi-btn { background: #ec3013; }
+.rmi-btn:hover { background: #ff4527; }
+
+.rmi-btn-ghost { background: rgba(255, 255, 255, .07); }
+.rmi-btn-ghost:hover { background: rgba(255, 255, 255, .14); }
+
+.rmi-shot { border: 1px solid rgba(255, 255, 255, .16); }
+.rmi-shot:hover { border-color: #ec3013; }
+
+.rmi-close { background: rgba(255, 255, 255, .08); }
+.rmi-close:hover { background: #ec3013; }

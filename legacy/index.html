@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RMI Global 3D — Your product, alive in 3D</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="./css/site.css">
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+</head>
+<body>
+<div style="width:100%;background:#0c0b0b;font-family:Archivo,system-ui,sans-serif;color:#f5f3f2;font-size:16px;line-height:1.6;position:relative;overflow-x:hidden">
+
+<div aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 38% 45%,rgba(236,48,19,.10) 0%,rgba(12,11,11,0) 70%)"></div>
+<div id="rmi-stage" style="position:fixed;inset:0;z-index:1;opacity:1">
+<canvas id="rmi-canvas" style="width:100%;height:100%;display:block;touch-action:pan-y"></canvas>
+</div>
+
+<header style="position:relative;z-index:6;display:flex;align-items:center;gap:clamp(16px,2vw,40px);padding:18px clamp(20px,5vw,80px);border-bottom:1px solid rgba(255,255,255,.1);backdrop-filter:blur(6px)">
+<div style="display:flex;align-items:center;gap:12px;margin-right:auto">
+<img src="./img/rmi-logo.png" alt="RMI" style="height:28px;width:auto;display:block;filter:brightness(0) invert(1)">
+<span style="font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.6);padding-left:12px;border-left:1px solid rgba(255,255,255,.18)">Global 3D</span>
+</div>
+<nav class="rmi-nav" style="display:flex;align-items:center;gap:clamp(18px,2vw,30px);font-size:14px;font-weight:500">
+<a href="#meeting" style="color:rgba(255,255,255,.72);text-decoration:none" data-hover="color:#ffffff">Meeting Room</a>
+<a href="#snapshot" style="color:rgba(255,255,255,.72);text-decoration:none" data-hover="color:#ffffff">Snapshot</a>
+<a href="#pin" style="color:rgba(255,255,255,.72);text-decoration:none" data-hover="color:#ffffff">PIN Issue</a>
+<a href="#inspection" style="color:rgba(255,255,255,.72);text-decoration:none" data-hover="color:#ffffff">Inspection</a>
+<a href="#iot" style="color:rgba(255,255,255,.72);text-decoration:none" data-hover="color:#ffffff">IoT</a>
+<a href="#manual" style="color:rgba(255,255,255,.72);text-decoration:none" data-hover="color:#ffffff">Digital Manual</a>
+</nav>
+<a href="#cta" style="display:inline-flex;align-items:center;gap:8px;background:#ec3013;color:#ffffff;font-weight:700;font-size:14px;padding:11px 20px;border-radius:999px;text-decoration:none;white-space:nowrap" data-hover="background:#ff4527">Book a demo</a>
+</header>
+
+<div id="rmi-track" style="position:relative;z-index:3">
+
+<section style="min-height:92vh;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;text-align:right;padding:clamp(40px,7vh,90px) clamp(20px,5vw,80px);pointer-events:none">
+<div style="max-width:620px;pointer-events:auto;display:flex;flex-direction:column;align-items:flex-end">
+<div style="display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 8px;border:1px solid rgba(255,255,255,.16);border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,.72);margin-bottom:26px;background:rgba(12,11,11,.55)"><span style="background:#ec3013;color:#ffffff;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700">LIVE 3D</span>Running in your browser</div>
+<h1 style="font-size:clamp(38px,5.6vw,80px);line-height:1.02;letter-spacing:-.035em;font-weight:700;margin:0 0 22px;text-wrap:balance">Your product, <span style="color: rgb(236, 48, 19);">alive in 3D</span></h1>
+<p style="font-size:clamp(16px,1.25vw,20px);line-height:1.55;max-width:46ch;margin:0 0 30px;color:rgba(255,255,255,.66);text-wrap:pretty">Drag to rotate the model. Then keep scrolling — the camera walks you through how teams meet, capture, report and maintain equipment on one shared 3D twin.</p>
+<div style="display:flex;flex-wrap:wrap;justify-content:flex-end;gap:12px">
+<a href="#meeting" style="display:inline-flex;align-items:center;gap:9px;background:#ec3013;color:#ffffff;font-weight:700;font-size:15px;padding:15px 28px;border-radius:999px;text-decoration:none" data-hover="background:#ff4527">Take the tour <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4"><path d="M12 5v14M6 13l6 6 6-6"></path></svg></a>
+<a href="#cta" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);color:#ffffff;font-weight:700;font-size:15px;padding:15px 28px;border:1px solid rgba(255,255,255,.18);border-radius:999px;text-decoration:none;backdrop-filter:blur(6px)" data-hover="background:rgba(255,255,255,.14)">Book a demo</a>
+</div>
+<div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:34px;font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.4)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"></path></svg>DRAG TO ROTATE · SCROLL TO EXPLORE</div>
+</div>
+</section>
+
+<section id="meeting" style="min-height:105vh;display:flex;align-items:center;justify-content:flex-end;padding:clamp(40px,8vh,100px) clamp(20px,5vw,80px);pointer-events:none">
+<div style="position:sticky;top:18vh;width:min(100%,600px);background:rgba(16,14,14,.82);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:clamp(24px,2.4vw,34px);backdrop-filter:blur(14px);pointer-events:auto">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.18em;color:#ec3013">01 / 06</span><span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span></div>
+<h2 style="font-size:clamp(26px,2.6vw,38px);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 14px">3D Sales Meeting Room</h2>
+<p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.66);margin:0 0 22px">Open the same model with a buyer anywhere in the world. Everyone shares one camera, one set of annotations and one live spec sheet — no CAD licence, no file transfer, no travel.</p>
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+<span style="width:34px;height:34px;border-radius:50%;background:#ec3013;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700">JK</span>
+<span style="width:34px;height:34px;border-radius:50%;background:#3d4a57;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-left:-14px">MA</span>
+<span style="width:34px;height:34px;border-radius:50%;background:#6a5f58;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-left:-14px">SL</span>
+<span style="display:inline-flex;align-items:center;gap:7px;margin-left:8px;font-size:12px;font-weight:600;color:rgba(255,255,255,.65)"><span style="width:7px;height:7px;border-radius:50%;background:#37d67a;animation:rmiBlink 1.6s infinite"></span>3 in the room · Seoul / Houston / Rotterdam</span>
+</div>
+<div style="display:grid;gap:8px;font-size:13px;color:rgba(255,255,255,.75)">
+<div style="display:flex;gap:10px;padding:10px 12px;background:rgba(255,255,255,.05);border-left:2px solid #ec3013"><strong style="color:#ffffff">Shared camera</strong>follow the presenter or break away</div>
+<div style="display:flex;gap:10px;padding:10px 12px;background:rgba(255,255,255,.05);border-left:2px solid rgba(255,255,255,.2)"><strong style="color:#ffffff">Live specs</strong>materials, pressure class, lead time</div>
+</div>
+<div id="rmi-shot" title="Click to enlarge" style="margin-top:18px;border:1px solid rgba(255,255,255,.16);overflow:hidden;background:#0f0e0e;cursor:zoom-in;position:relative" data-hover="border-color:#ec3013">
+<div style="display:flex;align-items:center;gap:7px;padding:7px 10px;background:#1b1919;border-bottom:1px solid rgba(255,255,255,.1)">
+<span style="width:7px;height:7px;border-radius:50%;background:#ec3013"></span>
+<span style="width:7px;height:7px;border-radius:50%;background:#4b4745"></span>
+<span style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.06em;color:rgba(255,255,255,.45);margin-left:6px">alink3d.com / sales-room</span>
+<span style="margin-left:auto;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;color:#ec3013"><span style="width:6px;height:6px;border-radius:50%;background:#ec3013;animation:rmiBlink 1.6s infinite"></span>LIVE</span>
+</div>
+<img src="./img/sales-room.png" alt="ALINK3D Sales Meeting Room — live 3D review with participants, chat, PIN list and snapshots" style="display:block;width:100%;height:auto">
+<span style="position:absolute;right:8px;bottom:8px;display:inline-flex;align-items:center;gap:6px;background:rgba(12,11,11,.82);border:1px solid rgba(255,255,255,.2);padding:5px 10px;font-size:10px;font-weight:700;letter-spacing:.08em"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4M11 8v6M8 11h6"></path></svg>ENLARGE</span>
+</div>
+</div>
+</section>
+
+<section id="snapshot" style="min-height:105vh;display:flex;align-items:center;justify-content:flex-end;padding:clamp(40px,8vh,100px) clamp(20px,5vw,80px);pointer-events:none">
+<div style="position:sticky;top:18vh;width:min(100%,600px);background:rgba(16,14,14,.82);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:clamp(24px,2.4vw,34px);backdrop-filter:blur(14px);pointer-events:auto">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.18em;color:#ec3013">02 / 06</span><span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span></div>
+<h2 style="font-size:clamp(26px,2.6vw,38px);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 14px">Snapshot</h2>
+<p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.66);margin:0 0 22px">Freeze any view — angle, section cut, hidden parts and all — and it becomes a shareable image with the exact camera state attached. Drop it into a quote, a report or a chat and the receiver can jump straight back into the live model.</p>
+<div style="position:relative;height:150px;border:1px solid rgba(255,255,255,.14);background:repeating-linear-gradient(45deg,#1a1717 0 9px,#211d1d 9px 18px);overflow:hidden;margin-bottom:18px">
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(236,48,19,0),rgba(236,48,19,.35),rgba(236,48,19,0));height:14%;animation:rmiScan 3.2s linear infinite"></div>
+<span style="position:absolute;left:12px;top:12px;width:22px;height:22px;border-left:2px solid #ec3013;border-top:2px solid #ec3013"></span>
+<span style="position:absolute;right:12px;top:12px;width:22px;height:22px;border-right:2px solid #ec3013;border-top:2px solid #ec3013"></span>
+<span style="position:absolute;left:12px;bottom:12px;width:22px;height:22px;border-left:2px solid #ec3013;border-bottom:2px solid #ec3013"></span>
+<span style="position:absolute;right:12px;bottom:12px;width:22px;height:22px;border-right:2px solid #ec3013;border-bottom:2px solid #ec3013"></span>
+<span style="position:absolute;left:50%;bottom:14px;transform:translateX(-50%);font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.16em;color:rgba(255,255,255,.55)">VIEW-2291 · 09:41 KST</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;font-size:12px;font-weight:600">
+<span style="padding:7px 13px;border:1px solid rgba(255,255,255,.18);border-radius:999px">PNG</span>
+<span style="padding:7px 13px;border:1px solid rgba(255,255,255,.18);border-radius:999px">PDF report</span>
+<span style="padding:7px 13px;border:1px solid rgba(255,255,255,.18);border-radius:999px">Deep link to view</span>
+</div>
+</div>
+</section>
+
+<section id="pin" style="min-height:105vh;display:flex;align-items:center;justify-content:flex-end;padding:clamp(40px,8vh,100px) clamp(20px,5vw,80px);pointer-events:none">
+<div style="position:sticky;top:18vh;width:min(100%,600px);background:rgba(16,14,14,.82);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:clamp(24px,2.4vw,34px);backdrop-filter:blur(14px);pointer-events:auto">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.18em;color:#ec3013">03 / 06</span><span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span></div>
+<h2 style="font-size:clamp(26px,2.6vw,38px);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 14px">PIN Issue</h2>
+<p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.66);margin:0 0 22px">Click the exact part and pin the problem to it. Photos, severity, owner and due date live on the geometry itself — so nobody has to describe "the flange on the left side of the pump" ever again.</p>
+<div style="border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);padding:16px;margin-bottom:12px">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="background:#ec3013;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;letter-spacing:.06em">CRITICAL</span><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:rgba(255,255,255,.5)">ISS-0412 · PUMP P-101</span></div>
+<div style="font-size:15px;font-weight:700;margin-bottom:6px">Mechanical seal leak at discharge</div>
+<div style="font-size:13px;color:rgba(255,255,255,.58)">Assigned to M. Ahn · due in 2 days · 3 photos</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;color:rgba(255,255,255,.7)">
+<div style="padding:10px 12px;background:rgba(255,255,255,.05)">Pins sync to your CMMS</div>
+<div style="padding:10px 12px;background:rgba(255,255,255,.05)">Status visible in 3D</div>
+</div>
+</div>
+</section>
+
+<section id="inspection" style="min-height:105vh;display:flex;align-items:center;justify-content:flex-end;padding:clamp(40px,8vh,100px) clamp(20px,5vw,80px);pointer-events:none">
+<div style="position:sticky;top:18vh;width:min(100%,600px);background:rgba(16,14,14,.82);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:clamp(24px,2.4vw,34px);backdrop-filter:blur(14px);pointer-events:auto">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.18em;color:#ec3013">04 / 06</span><span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span></div>
+<h2 style="font-size:clamp(26px,2.6vw,38px);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 14px">Inspection &amp; Maintenance</h2>
+<p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.66);margin:0 0 22px">Every round walks the model instead of a clipboard. Checklists are attached to components, the history of each part travels with it, and the next service date is one click from the geometry.</p>
+<div style="display:grid;gap:2px;font-size:13px">
+<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.05)"><span style="width:18px;height:18px;border:2px solid #37d67a;display:flex;align-items:center;justify-content:center"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#37d67a" stroke-width="3.4"><path d="M4 13l5 5L20 7"></path></svg></span><span style="flex:1">Tank T-201 · wall thickness</span><span style="color:rgba(255,255,255,.45);font-family:ui-monospace,Menlo,monospace;font-size:11px">PASS</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.05)"><span style="width:18px;height:18px;border:2px solid #ec3013;display:flex;align-items:center;justify-content:center"><span style="width:8px;height:8px;background:#ec3013"></span></span><span style="flex:1">Relief valve PSV-14 · set pressure</span><span style="color:#ec3013;font-family:ui-monospace,Menlo,monospace;font-size:11px">DUE</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.05)"><span style="width:18px;height:18px;border:2px solid rgba(255,255,255,.3)"></span><span style="flex:1">Exchanger E-301 · tube cleaning</span><span style="color:rgba(255,255,255,.45);font-family:ui-monospace,Menlo,monospace;font-size:11px">Q3</span></div>
+</div>
+<div style="margin-top:18px;font-size:12px;color:rgba(255,255,255,.5)">Average round time down 38% across 12 sites.</div>
+</div>
+</section>
+
+<section id="iot" style="min-height:105vh;display:flex;align-items:center;justify-content:flex-end;padding:clamp(40px,8vh,100px) clamp(20px,5vw,80px);pointer-events:none">
+<div style="position:sticky;top:18vh;width:min(100%,600px);background:rgba(16,14,14,.82);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:clamp(24px,2.4vw,34px);backdrop-filter:blur(14px);pointer-events:auto">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.18em;color:#ec3013">05 / 06</span><span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span></div>
+<h2 style="font-size:clamp(26px,2.6vw,38px);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 14px">IoT Integration</h2>
+<p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.66);margin:0 0 22px">Bind sensors, PLC tags and SCADA points to the parts they belong to. Live pressure, vibration and temperature stream onto the model itself, and an out-of-range tag lights up the exact component instead of a row in a table.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;margin-bottom:16px">
+<div style="background:rgba(255,255,255,.05);padding:14px"><div style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.45);margin-bottom:6px">PT-101 · DISCHARGE</div><div style="font-size:24px;font-weight:700;letter-spacing:-.02em">12.4 <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,.5)">bar</span></div></div>
+<div style="background:rgba(255,255,255,.05);padding:14px"><div style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.45);margin-bottom:6px">VT-204 · BEARING</div><div style="font-size:24px;font-weight:700;letter-spacing:-.02em;color:#ec3013">7.8 <span style="font-size:13px;font-weight:600">mm/s</span></div></div>
+<div style="background:rgba(255,255,255,.05);padding:14px"><div style="font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.45);margin-bottom:6px">TT-310 · MOTOR</div><div style="font-size:24px;font-weight:700;letter-spacing:-.02em">68 <span style="font-size:13px;font-weight:600;color:rgba(255,255,255,.5)">°C</span></div></div>
+</div>
+<div style="display:flex;align-items:center;gap:10px;padding:11px 13px;background:rgba(236,48,19,.12);border-left:2px solid #ec3013;font-size:13px"><span style="width:8px;height:8px;border-radius:50%;background:#ec3013;animation:rmiBlink 1.2s infinite"></span><strong style="color:#ffffff">Alarm</strong><span style="color:rgba(255,255,255,.7)">VT-204 above threshold — pin raised automatically on Pump P-101</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;font-size:12px;font-weight:600;color:rgba(255,255,255,.72)">
+<span style="padding:7px 13px;border:1px solid rgba(255,255,255,.18)">OPC UA</span>
+<span style="padding:7px 13px;border:1px solid rgba(255,255,255,.18)">MQTT</span>
+<span style="padding:7px 13px;border:1px solid rgba(255,255,255,.18)">Modbus TCP</span>
+<span style="padding:7px 13px;border:1px solid rgba(255,255,255,.18)">REST / Webhook</span>
+</div>
+</div>
+</section>
+
+<section id="manual" style="min-height:105vh;display:flex;align-items:center;justify-content:flex-end;padding:clamp(40px,8vh,100px) clamp(20px,5vw,80px);pointer-events:none">
+<div style="position:sticky;top:18vh;width:min(100%,600px);background:rgba(16,14,14,.82);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:clamp(24px,2.4vw,34px);backdrop-filter:blur(14px);pointer-events:auto">
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px"><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.18em;color:#ec3013">06 / 06</span><span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span></div>
+<h2 style="font-size:clamp(26px,2.6vw,38px);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin:0 0 14px">3D Digital Manual</h2>
+<p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.66);margin:0 0 22px">Disassembly, installation and overhaul procedures play as 3D animations instead of line drawings. Each step explodes the right parts, lists the tools and torque values, and a technician can scrub, replay and follow it on site.</p>
+<div style="display:grid;gap:2px;font-size:13px;margin-bottom:16px">
+<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(236,48,19,.14);border-left:2px solid #ec3013"><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#ec3013">STEP 01</span><span style="flex:1;color:#ffffff">Isolate and drain the casing</span><span style="color:rgba(255,255,255,.5);font-family:ui-monospace,Menlo,monospace;font-size:11px">0:24</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.05)"><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:rgba(255,255,255,.45)">STEP 02</span><span style="flex:1;color:rgba(255,255,255,.8)">Remove coupling guard · 4 × M10</span><span style="color:rgba(255,255,255,.4);font-family:ui-monospace,Menlo,monospace;font-size:11px">0:41</span></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.05)"><span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:rgba(255,255,255,.45)">STEP 03</span><span style="flex:1;color:rgba(255,255,255,.8)">Pull impeller · torque 95 N·m on refit</span><span style="color:rgba(255,255,255,.4);font-family:ui-monospace,Menlo,monospace;font-size:11px">1:12</span></div>
+</div>
+<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid rgba(255,255,255,.14)">
+<span style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:#ec3013"><svg width="13" height="13" viewBox="0 0 24 24" fill="#ffffff"><path d="M8 5l11 7-11 7z"></path></svg></span>
+<span style="flex:1;height:4px;background:rgba(255,255,255,.14);position:relative"><span style="position:absolute;left:0;top:0;bottom:0;width:38%;background:#ec3013"></span></span>
+<span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;color:rgba(255,255,255,.55)">0:34 / 1:29</span>
+</div>
+<div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,.5)">Works offline on tablet · exports to PDF work instruction</div>
+</div>
+</section>
+
+<section style="min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(40px,8vh,100px) clamp(20px,5vw,80px);pointer-events:none">
+<div style="max-width:640px;pointer-events:auto">
+<h2 style="font-size:clamp(30px,3.6vw,56px);font-weight:700;letter-spacing:-.03em;line-height:1.06;margin:0 0 18px;text-wrap:balance">One model. Six ways your team already works.</h2>
+<p style="font-size:17px;color:rgba(255,255,255,.62);margin:0 auto;max-width:48ch">Meeting room, snapshot, pinned issues, maintenance rounds, live IoT data and the animated manual all read from the same twin — so the 3D you sell with is the 3D you operate with.</p>
+</div>
+</section>
+
+</div>
+
+<section id="cta" style="position:relative;z-index:4;background:#0c0b0b;padding:clamp(56px,7vw,110px) clamp(20px,5vw,80px);border-top:1px solid rgba(255,255,255,.1)">
+<div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,2.4vw,40px);align-items:center">
+<div>
+<h2 style="font-size:clamp(28px,3.2vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin:0 0 16px;text-wrap:balance">Send one CAD file. See it live this week.</h2>
+<p style="font-size:16px;color:rgba(255,255,255,.62);margin:0 0 28px;max-width:46ch">We convert it, publish it, and hand you a meeting room link you can open with a customer the same day.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<a href="#" style="display:inline-flex;align-items:center;gap:9px;background:#ec3013;color:#ffffff;font-weight:700;font-size:15px;padding:15px 30px;border-radius:999px;text-decoration:none" data-hover="background:#ff4527">Book a demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4"><path d="M4 12h15M13 6l6 6-6 6"></path></svg></a>
+<a href="#" style="display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);color:#ffffff;font-weight:700;font-size:15px;padding:15px 30px;border:1px solid rgba(255,255,255,.18);border-radius:999px;text-decoration:none" data-hover="background:rgba(255,255,255,.14)">Talk to sales</a>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)">
+<div style="background:#0c0b0b;padding:24px"><div style="font-size:clamp(28px,3vw,42px);font-weight:700;letter-spacing:-.03em;line-height:1">38%</div><div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:6px">Faster inspection rounds</div></div>
+<div style="background:#0c0b0b;padding:24px"><div style="font-size:clamp(28px,3vw,42px);font-weight:700;letter-spacing:-.03em;line-height:1">2.4M+</div><div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:6px">Model views served</div></div>
+<div style="background:#0c0b0b;padding:24px"><div style="font-size:clamp(28px,3vw,42px);font-weight:700;letter-spacing:-.03em;line-height:1">18K+</div><div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:6px">Issues pinned in 3D</div></div>
+<div style="background:#0c0b0b;padding:24px"><div style="font-size:clamp(28px,3vw,42px);font-weight:700;letter-spacing:-.03em;line-height:1">1,200+</div><div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:6px">Manufacturers onboard</div></div>
+</div>
+</div>
+</section>
+
+<footer style="position:relative;z-index:4;background:#0c0b0b;padding:clamp(28px,3vw,44px) clamp(20px,5vw,80px);border-top:1px solid rgba(255,255,255,.1)">
+<div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 32px">
+<div style="display:flex;align-items:center;gap:12px"><img src="./img/rmi-logo.png" alt="RMI" style="height:24px;width:auto;display:block;filter:brightness(0) invert(1)"><span style="font-size:12px;color:rgba(255,255,255,.45)">© 2026 RMI Global 3D</span></div>
+<nav style="display:flex;flex-wrap:wrap;gap:20px;font-size:13px">
+<a href="#meeting" style="color:rgba(255,255,255,.55);text-decoration:none" data-hover="color:#ffffff">Meeting Room</a>
+<a href="#snapshot" style="color:rgba(255,255,255,.55);text-decoration:none" data-hover="color:#ffffff">Snapshot</a>
+<a href="#pin" style="color:rgba(255,255,255,.55);text-decoration:none" data-hover="color:#ffffff">PIN Issue</a>
+<a href="#inspection" style="color:rgba(255,255,255,.55);text-decoration:none" data-hover="color:#ffffff">Inspection</a>
+<a href="#iot" style="color:rgba(255,255,255,.55);text-decoration:none" data-hover="color:#ffffff">IoT</a>
+<a href="#manual" style="color:rgba(255,255,255,.55);text-decoration:none" data-hover="color:#ffffff">Digital Manual</a>
+</nav>
+<div style="font-size:12px;color:rgba(255,255,255,.45)">Powered by ALINK<span style="color:#ec3013">3D</span>®</div>
+</div>
+</footer>
+
+<div id="rmi-lightbox" data-close style="position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);background:rgba(7,6,6,.92);backdrop-filter:blur(6px);cursor:zoom-out">
+<div style="width:100%;max-width:1600px;border:1px solid rgba(255,255,255,.18);background:#0f0e0e">
+<div style="display:flex;align-items:center;gap:8px;padding:10px 14px;background:#1b1919;border-bottom:1px solid rgba(255,255,255,.1)">
+<span style="font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.55)">alink3d.com / sales-room / LNG FPSO Pump Package</span>
+<span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#ec3013"><span style="width:7px;height:7px;border-radius:50%;background:#ec3013;animation:rmiBlink 1.6s infinite"></span>LIVE</span>
+<button data-close aria-label="Close" style="margin-left:14px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);border:0;color:#ffffff;cursor:pointer" data-hover="background:#ec3013"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<img src="./img/sales-room.png" alt="ALINK3D Sales Meeting Room, enlarged" style="display:block;width:100%;height:auto;max-height:78vh;object-fit:contain;background:#0f0e0e">
+</div>
+</div>
+<div style="position:fixed;left:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,36px);z-index:7;display:flex;flex-direction:column;gap:9px;pointer-events:none">
+<span data-rmi-dot="0" style="width:8px;height:8px;border-radius:50%;background:#ec3013"></span>
+<span data-rmi-dot="1" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)"></span>
+<span data-rmi-dot="2" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)"></span>
+<span data-rmi-dot="3" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)"></span>
+<span data-rmi-dot="4" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)"></span>
+<span data-rmi-dot="5" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)"></span>
+<span data-rmi-dot="6" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)"></span>
+</div>
+
+</div>
+
+<script src="./js/scene.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>

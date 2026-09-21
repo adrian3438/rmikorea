@@ -1,0 +1,11 @@
+/* RMI Global 3D — site styles. Inline styles carry the layout; this file holds
+   what inline styles cannot express: resets, keyframes, hover states, media queries. */
+body{margin:0;background:#0c0b0b}
+a{color:#ec3013}
+a:hover{color:#ff6a52}
+@keyframes rmiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes rmiBlink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes rmiScan{0%{transform:translateY(-100%)}100%{transform:translateY(900%)}}
+#rmi-canvas{cursor:grab}
+#rmi-shot:hover{border-color:#ec3013 !important}
+@media (max-width:1023px){.rmi-nav{display:none !important}}

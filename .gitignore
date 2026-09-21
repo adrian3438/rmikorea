@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+.DS_Store
+*.log
+
+# Deployment target (host, user, key path) — kept out of this public repo.
+scripts/deploy.env
+
+# JetBrains project settings
+.idea/
